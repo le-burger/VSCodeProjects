@@ -7,20 +7,20 @@ print("punten en de einddatum in te voeren geeft dit programma de voortgang aan.
 
 # Gather input: all fields and its receivable points and the enddate of the course
 isThatAll = "N"
-fieldColumn = 1
-pointsColumn = 1
+FIELD_COLUMN = 1
+POINTS_COLUMN = 1
 
 wb = openpyxl.load_workbook('example2.xlsx')
 sheet = wb['Sheet1']
 
 while isThatAll == "N":
     field = input("Wat is de naam van het vak?")
-    sheet['A'  + str(fieldColumn)] = field
-    fieldColumn += 1
+    sheet['A'  + str(FIELD_COLUMN)] = field
+    FIELD_COLUMN += 1
 
     points = input(f"Hoeveel punten zijn er te behalen voor {field}?")
-    sheet['B'  + str(pointsColumn)] = points
-    pointsColumn += 1
+    sheet['B'  + str(POINTS_COLUMN)] = points
+    POINTS_COLUMN += 1
 
     wb.save('example2.xlsx')
     isThatAll = input("Zijn alle vakken ingevoerd? (Y/N)").upper()

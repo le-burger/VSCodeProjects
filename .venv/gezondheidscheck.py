@@ -26,14 +26,14 @@ userBloodpressure = int(input("What is your current bloodpressure?"))
 if isTussen(userHeartRate, MIN_HR, MAX_HR): 
     print("You have a healthy heart rate!")
 else:
-    print("Heart rate is to low. Go see the doctor")
+    print("Unhealthy. Go see the doctor")
 
 if isTussen(userTemperature, MIN_TEMP, MAX_TEMP): 
     print("You have a healthy temperature!")
 else:
-    print("Temperature is to low. Go see the doctor")
+    print("Unhealthy. Go see the doctor")
 
 if isTussen(userBloodpressure, MIN_HG, MAX_HG): 
     print("You have a healthy blodpressure!")
 else:
-    print("Bloodpressure is to low. Go see the doctor")
+    print("Unhealthy. Go see the doctor")
