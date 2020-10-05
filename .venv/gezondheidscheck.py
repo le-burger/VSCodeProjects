@@ -14,7 +14,7 @@ MIN_HR = 55
 MAX_TEMP = 37.5
 MIN_TEMP = 36.3
 
-MAX_HG = 140
+MAX_BLOODPRESSURE = 140
 MIN_BLOODPRESSURE = 100
 
 # Asking for input from the user
@@ -33,7 +33,7 @@ if isTussen(userTemperature, MIN_TEMP, MAX_TEMP):
 else:
     print("Unhealthy. Go see the doctor")
 
-if isTussen(userBloodpressure, MIN_HG, MAX_HG): 
+if isTussen(userBloodpressure, MIN_BLOODPRESSURE, MAX_BLOODPRESSURE): 
     print("You have a healthy blodpressure!")
 else:
     print("Unhealthy. Go see the doctor")
