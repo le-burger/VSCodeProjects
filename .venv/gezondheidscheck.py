@@ -15,7 +15,7 @@ MAX_TEMP = 37.5
 MIN_TEMP = 36.3
 
 MAX_HG = 140
-MIN_HG = 100
+MIN_BLOODPRESSURE = 100
 
 # Asking for input from the user
 userHeartRate = int(input("What is your current heartrate?"))

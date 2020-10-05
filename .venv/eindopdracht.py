@@ -1,4 +1,6 @@
-# Leander Burger | Eindopdracht | Op basis van de ingevoerde vakken, te behalen studiepunten en de einddatum opleiding
+# Auteur: Leander Burger 
+# Groep: ID1G1
+# | Eindopdracht | Op basis van de ingevoerde vakken, te behalen studiepunten en de einddatum opleiding
 # zal dit programma aantonen hoeveel procent er is afgerond en hoelang de opleiding nog duurt.
 import openpyxl
 
