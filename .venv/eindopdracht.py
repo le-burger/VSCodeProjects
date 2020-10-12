@@ -15,7 +15,6 @@ isThatAll = "N"
 FIELD_COLUMN = 1
 POINTS_COLUMN = 1
 
-
 wb = Workbook()
 sheet = wb.active
 
@@ -45,6 +44,25 @@ endDate = input("Please enter the end date of your study dd-mm-yyyy")
 while checkDate(endDate) == False:
     endDate = input("Please enter a valid date. Format: dd-mm-yyyy")
 
+# Making arrays from the rowa in excel sheets
+COURSES = sheet['A']
+courseArray = [] 
+x = 0
+
+for i in COURSES:
+    courseArray.append(COURSES[x].value)
+    x += 1
+
+STUDYPOINTS = sheet['B']
+studyPointsArray = [] 
+y = 0 
+
+for i in STUDYPOINTS:
+    studyPointsArray.append(STUDYPOINTS[y].value)
+    y += 1
+
+print(courseArray)
+print(studyPointsArray)
 
 # Compare dates and show calculate the difference. If no list use: endDateList = endDate.split('-')
 endDateObj = datetime.strptime(endDate, "%d-%m-%Y")
