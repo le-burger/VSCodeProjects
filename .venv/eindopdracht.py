@@ -1,16 +1,13 @@
 # Auteur: Leander Burger 
 # Groep: ID1G1
 # Eindopdracht
-# Op basis van de ingevoerde vakken, te behalen studiepunten en de einddatum opleiding
-# zal dit programma aantonen hoeveel procent er is afgerond en hoelang de opleiding nog duurt.
+# This program will show the progress of your study after collecting some data through questions.
 
 from openpyxl import Workbook
 from datetime import datetime, date
 
-print("Met dit programma is het mogelijk om de voortgang van je studie in te zien. Door alle vakken, type") 
-print("punten en de einddatum in te voeren geeft dit programma de voortgang aan. \n")
+print("This program will show you the progress of your study after collecting some data through questions.") 
 
-# Gather input: all fields and its receivable points
 isThatAll = "N"
 FIELD_COLUMN = 1
 POINTS_COLUMN = 1
@@ -19,15 +16,15 @@ wb = Workbook()
 sheet = wb.active
 
 while isThatAll == "N":
-    field = input("Wat is de naam van het vak?")
+    field = input("What;s the name of the course?")
     sheet['A'  + str(FIELD_COLUMN)] = field
     FIELD_COLUMN += 1
 
-    points = int(input(f"Hoeveel punten zijn er te behalen voor {field}?"))
+    points = int(input(f"how many studypoints can you get for {field}?"))
     sheet['B'  + str(POINTS_COLUMN)] = points
     POINTS_COLUMN += 1
 
-    isThatAll = input("Zijn alle vakken ingevoerd? (Y/N)").upper()
+    isThatAll = input("Did you fill in all courses? (Y/N)").upper()
 
 wb.save('.venv\studycourse.xlsx') 
 
@@ -70,3 +67,5 @@ today = date.today()
 future = date(endDateObj.year,endDateObj.month,endDateObj.day)
 diff = future - today
 print (diff.days)
+
+# TBD, sum of studyPointsArray, check on passed courses, output percentage of collected point and days left to get to 100%
