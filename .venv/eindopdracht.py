@@ -28,7 +28,7 @@ while isThatAll == "N":
 
     isThatAll = input("Did you fill in all courses? (Y/N)").upper()
 
-wb.save('.venv\studycourse.xlsx') 
+wb.save('studycourse.xlsx') 
 
 # Ask for the enddate of the study and validate the date.
 def checkDate(date):
