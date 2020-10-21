@@ -5,24 +5,26 @@
 
 from openpyxl import Workbook
 from datetime import datetime, date
+import time
+import sys
 
+# Gathering the school data from the user.
 print("This program will show you the progress of your study after collecting some data through questions.") 
 
 isThatAll = "N"
-FIELD_COLUMN = 1
-POINTS_COLUMN = 1
+column = 1
 
 wb = Workbook()
 sheet = wb.active
 
 while isThatAll == "N":
-    field = input("What;s the name of the course?")
-    sheet['A'  + str(FIELD_COLUMN)] = field
-    FIELD_COLUMN += 1
-
-    points = int(input(f"how many studypoints can you get for {field}?"))
-    sheet['B'  + str(POINTS_COLUMN)] = points
-    POINTS_COLUMN += 1
+    field = input("What's the name of the course?")
+    sheet['A'  + str(column)] = field
+    points = int(input(f"How many studypoints can you get for {field}?"))
+    sheet['B'  + str(column)] = points
+    passed = input(f"Did you already pass {field} (Y/N)?").upper()
+    sheet['C'  + str(column)] = passed
+    column += 1
 
     isThatAll = input("Did you fill in all courses? (Y/N)").upper()
 
@@ -37,35 +39,55 @@ def checkDate(date):
         return False
 
 endDate = input("Please enter the end date of your study dd-mm-yyyy")
-
 while checkDate(endDate) == False:
     endDate = input("Please enter a valid date. Format: dd-mm-yyyy")
 
-# Making arrays from the rowa in excel sheets
-COURSES = sheet['A']
+# Making arrays from the rows in excel sheets to use from 
+courses = sheet['A']
+studyPoints = sheet['B']
+passedCourse = sheet['C']
+
 courseArray = [] 
+studyPointsArray = [] 
+passedPointsArray = []
+
 x = 0
 
-for i in COURSES:
-    courseArray.append(COURSES[x].value)
+for i in courses:
+    courseArray.append(courses[x].value)
+    studyPointsArray.append(studyPoints[x].value)
+    
+    if passedCourse[x].value == 'Y':
+        passedPointsArray.append(studyPoints[x].value)
+
     x += 1
 
-STUDYPOINTS = sheet['B']
-studyPointsArray = [] 
-y = 0 
-
-for i in STUDYPOINTS:
-    studyPointsArray.append(STUDYPOINTS[y].value)
-    y += 1
-
-print(courseArray)
-print(studyPointsArray)
-
-# Compare dates and show calculate the difference. If no list use: endDateList = endDate.split('-')
+# Calculating time left for getting all points using datetime module
 endDateObj = datetime.strptime(endDate, "%d-%m-%Y")
 today = date.today()
 future = date(endDateObj.year,endDateObj.month,endDateObj.day)
 diff = future - today
-print (diff.days)
 
-# TBD, sum of studyPointsArray, check on passed courses, output percentage of collected point and days left to get to 100%
+# function to calculate the progress
+def progress(total, passed):
+    totalPoints = sum(total)
+    passedPoints = sum(passed)
+    PERCENTAGE = 100
+    return (passedPoints / totalPoints) * PERCENTAGE
+
+# Output to user in a friendly way
+def normal_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.08)
+
+def slow_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.5)
+
+normal_print(f"After meticulously calculating and checking the gathered studypoints I've came to the conclusion that your progress to completion so far is {progress(studyPointsArray, passedPointsArray)}%!")
+slow_print(".....")
+normal_print(f"No worries though you still have {diff.days} days left to get to 100%!")
