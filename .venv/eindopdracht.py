@@ -1,6 +1,7 @@
 # Auteur: Leander Burger 
 # Group: ID1G1
-# Eindopdracht
+# Eindopdracht 
+# Source: https://github.com/le-burger/VSCodeProjects/blob/master/.venv/eindopdracht.py
 # This program will show the progress of your study after collecting some data through questions.
 
 from openpyxl import Workbook
